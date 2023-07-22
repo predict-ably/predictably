@@ -1,5 +1,4 @@
 #!/usr/bin/env python3 -u
-# -*- coding: utf-8 -*-
 # copyright: predict-ably, BSD-3-Clause License (see LICENSE file)
 """:mod:`predictably` provides a unified time series forecasting interface.
 
