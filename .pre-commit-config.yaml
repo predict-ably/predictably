@@ -13,11 +13,22 @@ repos:
       - id: debug-statements
       - id: end-of-file-fixer
       - id: fix-encoding-pragma
+        args: [--remove]
       - id: requirements-txt-fixer
       - id: trailing-whitespace
       - id: check-docstring-first
       - id: name-tests-test
         args: ["--django"]
+      - id: detect-private-key
+      - id: fix-byte-order-marker
+      - id: mixed-line-ending
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.0.279
+    hooks:
+      - id: ruff
+        args: [--fix, --exit-non-zero-on-fix]
+        types_or: [python, pyi, jupyter]
 
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
@@ -60,19 +71,6 @@ repos:
       - id: pydocstyle
         additional_dependencies: [".[toml]"]
 
-  - repo: https://github.com/nbQA-dev/nbQA
-    rev: 1.6.3
-    hooks:
-      - id: nbqa-isort
-        args: [--nbqa-mutate, --nbqa-dont-skip-bad-cells]
-        additional_dependencies: [isort==5.6.4]
-      - id: nbqa-black
-        args: [--nbqa-mutate, --nbqa-dont-skip-bad-cells]
-        additional_dependencies: [black==20.8b1]
-      - id: nbqa-flake8
-        args: [--nbqa-dont-skip-bad-cells, "--extend-ignore=E402,E203"]
-        additional_dependencies: [flake8==3.8.3]
-
   - repo: https://github.com/PyCQA/bandit
     rev: 1.7.4
     hooks:
@@ -86,3 +84,14 @@ repos:
       - id: doc8
         args: ["--max-line-length=88", "--config=pyproject.toml", "docs"]
         additional_dependencies: ["tomli"]
+
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.5.0
+    hooks:
+      - id: yesqa
+
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v3.9.0
+    hooks:
+      - id: pyupgrade
+        args: ["--py38-plus"]
