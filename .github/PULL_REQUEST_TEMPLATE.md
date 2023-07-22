@@ -1,6 +1,6 @@
 <!--
 Thanks for contributing a pull request! Please ensure you have taken a look
-at our contribution guide: https://skbase.readthedocs.io/en/latest/contribute.html
+at our contribution guide: https://predictably.readthedocs.io/en/latest/contribute.html
 -->
 
 #### Reference Issues/PRs
@@ -23,7 +23,7 @@ unit tests and docstrings if your pull request commits code to the repository.
 
 <!--
 If your contribution requires a new dependency please indicate why it is necessary.
-skbase seeks to mimimize dependencies to make it easy to use skbase in a variety
+predictably seeks to mimimize dependencies to make it easy to use predictably in a variety
 of environments and contexts.
 -->
 
@@ -44,14 +44,14 @@ Please go through the checklist below. Please feel free to remove points if they
 -->
 
 ##### For all contributions
-- [ ] I've reviewed the project documentation on [contributing](https://skbase.readthedocs.io/en/latest/contribute.html)
-- [ ] I've added myself to the [list of contributors](https://github.com/sktime/skbase/blob/main/.all-contributorsrc).
+- [ ] I've reviewed the project documentation on [contributing](https://predictably.readthedocs.io/en/latest/contribute.html)
+- [ ] I've added myself to the [list of contributors](https://github.com/predict-ably/predictably/blob/main/.all-contributorsrc).
 - [ ] The PR title starts with either [ENH], [CI/CD], [MNT], [DOC], or [BUG] indicating whether
   the PR topic is related to enhancement, CI/CD, maintenance, documentation, or a bug.
 
 ##### For code contributions
 - [ ] Unit tests have been added covering code functionality
-- [ ] Appropriate docstrings have been added (see [documentation standards](https://skbase.readthedocs.io/en/latest/contribute/development/developer_guide/creating_docs.html))
+- [ ] Appropriate docstrings have been added (see [documentation standards](https://predictably.readthedocs.io/en/latest/contribute/development/developer_guide/creating_docs.html))
 - [ ] New public functionality has been added to the API Reference
 
 
