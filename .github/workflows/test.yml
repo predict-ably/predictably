@@ -54,7 +54,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - uses: actions/setup-python@v4
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
         with:
           python-version: ${{ matrix.python-version }}
 
@@ -62,6 +63,7 @@ jobs:
         shell: bash -l {0}
         run: |
           python -VV
+          python -m pip install --upgrade pip
           python -m pip install .[test]
 
       # Commented out for now. Turn on once dependencies are shrunk.
