@@ -44,15 +44,15 @@ Please go through the checklist below. Please feel free to remove points if they
 -->
 
 ##### For all contributions
-- [ ] I've reviewed the project documentation on [contributing](https://predictably.readthedocs.io/en/latest/contribute.html)
-- [ ] I've added myself to the [list of contributors](https://github.com/predict-ably/predictably/blob/main/.all-contributorsrc).
-- [ ] The PR title starts with either [ENH], [CI/CD], [MNT], [DOC], or [BUG] indicating whether
+-  [ ] I've reviewed the project documentation on [contributing](https://predictably.readthedocs.io/en/latest/contribute.html)
+-  [ ] I've added myself to the [list of contributors](https://github.com/predict-ably/predictably/blob/main/.all-contributorsrc).
+-  [ ] The PR title starts with either [ENH], [CI/CD], [MNT], [DOC], or [BUG] indicating whether
   the PR topic is related to enhancement, CI/CD, maintenance, documentation, or a bug.
 
 ##### For code contributions
-- [ ] Unit tests have been added covering code functionality
-- [ ] Appropriate docstrings have been added (see [documentation standards](https://predictably.readthedocs.io/en/latest/contribute/development/developer_guide/creating_docs.html))
-- [ ] New public functionality has been added to the API Reference
+-  [ ] Unit tests have been added covering code functionality
+-  [ ] Appropriate docstrings have been added (see [documentation standards](https://predictably.readthedocs.io/en/latest/contribute/development/developer_guide/creating_docs.html))
+-  [ ] New public functionality has been added to the API Reference
 
 
 <!--

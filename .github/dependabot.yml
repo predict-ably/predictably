@@ -10,6 +10,11 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
+    # Include a list of updated dependencies
+    # with a prefix determined by the dependency group
+    commit-message:
+      prefix: "[Dependabot]: github-actions"
+      include: "scope"
   # Maintain dependencies for pip packages
   - package-ecosystem: "pip"
     directory: "/pyproject.toml"
@@ -18,6 +23,6 @@ updates:
     # Include a list of updated dependencies
     # with a prefix determined by the dependency group
     commit-message:
-      prefix: "pip prod"
-      prefix-development: "pip dev"
+      prefix: "[Dependabot]: pip prod"
+      prefix-development: "[Dependabot]: pip dev"
       include: "scope"
