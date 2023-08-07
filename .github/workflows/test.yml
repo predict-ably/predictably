@@ -49,7 +49,7 @@ jobs:
     strategy:
         fail-fast: true
         matrix:
-          os: [ubuntu-latest, windows-latest, macOS-12]
+          os: [ubuntu-latest, windows-latest, macOS-latest]
           python-version: ['3.8', '3.9', '3.10', '3.11']
     steps:
       - uses: actions/checkout@v3
@@ -60,7 +60,6 @@ jobs:
           python-version: ${{ matrix.python-version }}
 
       - name: Install dependencies
-        shell: bash -l {0}
         run: |
           python -VV
           python -m pip install --upgrade pip
