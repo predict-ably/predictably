@@ -18,31 +18,26 @@ on:
   # Allows workflows to be manually triggered
   workflow_dispatch:
 
-permissions:
-  contents: read
-  # Needed for the 'trilom/file-changes-action' action
-  pull-requests: read
-
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.head_ref || github.ref }}
   cancel-in-progress: true
 
 jobs:
-  # Look into replacing this with pre-commit.ci
+  # This is used in addition to pre-commit.ci so that we can fail the build
   code-quality:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
-      - id: file_changes
-        uses: trilom/file-changes-action@v1.2.4
         with:
-          output: " "
+          python-version: 3.10
+      - id: Changed-files
+        uses: tj-actions/changed-files@v35.9.0
       - name: List changed files
-        run: echo '${{ steps.file_changes.outputs.files}}'
+        run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
       - uses: pre-commit/action@v3.0.0
         with:
-          extra_args: --files ${{ steps.file_changes.outputs.files}}
+          extra_args: --files ${{ steps.changed-files.outputs.all_changed_files }}
       - name: Check for missing init files
         run: build_tools/fail_on_missing_init_files.sh
         shell: bash
@@ -55,45 +50,14 @@ jobs:
         fail-fast: true
         matrix:
           os: [ubuntu-latest, windows-latest, macOS-latest]
-          python-version: ['3.7', '3.8', '3.9', '3.10', '3.11']
+          python-version: ['3.8', '3.9', '3.10', '3.11']
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: conda-incubator/setup-miniconda@v2
-        name: Set up conda
+      - uses: actions/setup-python@v4
         with:
-          # We want to come back and add a previous step (maybe our own github action)
-          # that will generate the test_env.yml file based on pyproject.toml
-          # Doing it this way is easier and lets us easily use conda to install everything
-          # But just have packages listed in pyproject.toml
-          # activate-environment: test_env
-          # environment-file: build_tools/test_env.yml
-          auto-update-conda: true
-          miniconda-version: "latest"
-          python-version: ${{ matrix.python-version }}
-          channels: anaconda, conda-forge
-          channel-priority: true
-          auto-activate-base: false
-          activate-environment: test
-          use-only-tar-bz2: true
+          python-version: "3.10"
 
-      # Useful for troubleshooting
-      - name: Check Conda Setup
-        shell: bash -l {0}
-        run: |
-          conda --version
-          conda info --envs
-          which python
-          which pip
-
-      # We want to replace this with the earlier step that
-      # auto generates a environment.yml (named based on pyproject.toml dep table name)
-      # that is installed by conda
-      # The downside of doing it this way is that pip will be greedy
-      # It could cause some dependencies all ready installed by conda to be
-      # installed in different verisons that break the installation
-      # in BaseObject this likelihood is not high, but creating this functionality
-      # will be a nice value add (and has uses outside of .github actions)
       - name: Install dependencies
         shell: bash -l {0}
         run: |
