@@ -24,6 +24,8 @@ jobs:
       - name: 'Dependency Review'
         uses: actions/dependency-review-action@v1
         with:
+          base-ref: ${{ github.event.pull_request.base.sha || 'main' }}
+          head-ref: ${{ github.event.pull_request.head.sha || github.ref }}
           # Possible values: "critical", "high", "moderate", "low"
           # Will fail if a PR introduces a security vulnerability
           # that is the specified level or higher
