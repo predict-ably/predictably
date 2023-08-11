@@ -70,10 +70,8 @@ docs = [
     "pydata-sphinx-theme",
     "sphinx",
     "sphinx-copybutton",
-    "sphinx-issues",
-    "sphinx-gallery",
-    "sphinx-panels",
     "sphinx-design",
+    "sphinx-issues",
 ]
 
 test = [
@@ -136,7 +134,7 @@ exclude_dirs = ["*/tests/*", "*/testing/*"]
 zip-safe = true
 
 [tool.setuptools.package-data]
-sktime = [
+predictably = [
     "*.csv",
     "*.csv.gz",
     "*.arff",
