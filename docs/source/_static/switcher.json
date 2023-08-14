@@ -1,0 +1,12 @@
+[
+    {
+        "name": "dev",
+        "version": "latest",
+        "url": "https://predictably.readthedocs.io/en/latest/"
+    },
+    {
+        "name": "0.2.0 (stable)",
+        "version": "stable",
+        "url": "https://predictably.readthedocs.io/en/v0.2.0/"
+    }
+]
