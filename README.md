@@ -45,4 +45,4 @@ Interested in providing feedback or getting involved? Reach out!
 
 [GitHub Issue Tracker]: https://github.com/predict-ably/predictably/issues
 [GitHub Discussions]: https://github.com/predict-ably/predictably/discussions
-[Slack]: https://join.slack.com/t/predict-ably/shared_invite/zt-21ezi33ip-WGJCUBCWc5yVrr6FOsARaw"
+[Slack]: https://join.slack.com/t/predict-ably/shared_invite/zt-21ezi33ip-WGJCUBCWc5yVrr6FOsARaw
