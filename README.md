@@ -3,7 +3,7 @@ A cross-language ecosystem for statistics and machine learning. predict*ably* se
 well documented interface for a variety of statistical and machine learning problems.
 
 :seedling: We are working on our first release. Checkout our
-[release notes](https://predictably.org/en/latest/changelog.html).
+[release notes](https://predict-ably.org/en/latest/changelog.html).
 
 | Overview | |
 |---|---|
