@@ -14,7 +14,7 @@ if current_year > 2023:
 
 org = "predict-ably"
 project = "predictably"
-copyright = "{current_year}, {org} developers (BSD-3 License)"
+copyright = f"{current_year}, {org} developers (BSD-3 License)"
 author = "predict-ably developers"
 
 release = predictably.__version__
@@ -132,7 +132,7 @@ def linkcode_resolve(domain, info):
     if domain != "py" or not info["module"]:
         return None
     try:
-        filename = "{project}/%s#L%d-L%d" % find_source()
+        filename = f"{project}/%s#L%d-L%d" % find_source()
     except Exception:
         filename = info["module"].replace(".", "/") + ".py"
     return f"https://github.com/{org}/{project}/blob/{version_match}/{filename}"
