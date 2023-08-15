@@ -56,7 +56,6 @@ extensions = [
 myst_enable_extensions = ["colon_fence"]
 myst_heading_anchors = 2
 
-templates_path = ["_templates"]
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
@@ -146,8 +145,6 @@ html_theme = "pydata_sphinx_theme"
 
 # Define the json_url for our version switcher.
 json_url = "https://predictably.readthedocs.io/en/latest/_static/switcher.json"
-
-html_static_path = ["_static"]
 
 # This uses code from the py-data-sphinx theme's own conf.py
 # Define the version we use for matching in the version switcher.
