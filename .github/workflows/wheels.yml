@@ -1,4 +1,4 @@
-name: Build wheels and publish to PyPI
+name: Release
 
 on:
   release:
