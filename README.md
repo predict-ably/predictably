@@ -17,7 +17,7 @@ well documented interface for a variety of statistical and machine learning prob
 
 ## :rocket: Get Started
 
-To learn more about the package checkout our [documentation](https://predictably.org/en/latest/).
+To learn more about the package checkout our [documentation](https://predict-ably.org/en/latest/).
 
 ### :hourglass_flowing_sand: Installation
 
@@ -29,7 +29,7 @@ pip install predictably
 
 ### :books: Learn More
 
-See our full [installation documentation](https://www.predictably.org/en/latest/installation.html) for more details.
+See our full [installation documentation](https://www.predict-ably.org/en/latest/installation.html) for more details.
 
 ## :telephone_receiver: Get in Touch
 
