@@ -29,7 +29,7 @@ pip install predictably
 
 ### :books: Learn More
 
-See our full [installation documentation](https://www.predict-ably.org/en/latest/installation.html) for more details.
+See our full [installation documentation](https://predict-ably.org/en/latest/installation.html) for more details.
 
 ## :telephone_receiver: Get in Touch
 
