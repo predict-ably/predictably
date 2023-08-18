@@ -3,5 +3,5 @@
 """Test predictably TimeSeries class."""
 
 
-def test_timeseries():
+def test_timeseries() -> None:
     assert True

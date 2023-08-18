@@ -30,12 +30,6 @@ repos:
         args: [--fix, --exit-non-zero-on-fix]
         types_or: [python, pyi, jupyter]
 
-  - repo: https://github.com/asottile/dead
-    rev: v1.5.2
-    hooks:
-      - id: dead
-        args: [--exclude docs/conf.py]
-
   - repo: https://github.com/pycqa/isort
     rev: 5.12.0
     hooks:
