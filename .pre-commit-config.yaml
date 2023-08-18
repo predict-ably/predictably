@@ -116,3 +116,8 @@ repos:
     hooks:
       - id: pyupgrade
         args: ["--py38-plus"]
+
+  - repo: https://github.com/numpy/numpydoc
+    rev: 41a1508
+    hooks:
+      - id: numpydoc-validation
