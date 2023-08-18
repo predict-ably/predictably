@@ -9,7 +9,7 @@
 ## Reporting a Vulnerability
 
 Please report security vulnerabilities by email to `predictably.ai@gmail.com`.
-This email will be forward to the relevent members of the `predictably` development
+This email will be forward to the relevant members of the `predictably` development
 team.
 
 If the security vulnerability is accepted, a patch will be developed privately to

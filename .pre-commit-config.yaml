@@ -65,6 +65,14 @@ repos:
             doc8,
           ]
 
+  - repo: https://github.com/pre-commit/mirrors-mypy
+    rev: v1.3.0
+    hooks:
+      - id: mypy
+        files: predictably/
+        args: [--strict, --ignore-missing-imports]
+        additional_dependencies: []
+
   - repo: https://github.com/pycqa/pydocstyle
     rev: 6.3.0
     hooks:
@@ -78,12 +86,25 @@ repos:
         args: ["-c", "pyproject.toml"]
         additional_dependencies: ["bandit[toml]"]
 
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.2.4
+    hooks:
+      - id: codespell
+        types_or: [python, rst, markdown]
+        additional_dependencies:
+          - tomli
+
   - repo: https://github.com/PyCQA/doc8
     rev: v1.1.1
     hooks:
       - id: doc8
         args: ["--max-line-length=88", "--config=pyproject.toml", "docs"]
         additional_dependencies: ["tomli"]
+
+  - repo: https://github.com/sphinx-contrib/sphinx-lint
+    rev: v0.6.7
+    hooks:
+      - id: sphinx-lint
 
   - repo: https://github.com/asottile/yesqa
     rev: v1.5.0
