@@ -1,5 +1,5 @@
 # predict*ably*
-A cross-language ecosystem for statistics and machine learning. predict*ably* seeks to provide an intutive,
+A cross-language ecosystem for statistics and machine learning. predict*ably* seeks to provide an intuitive,
 well documented interface for a variety of statistical and machine learning problems.
 
 :seedling: We are working on our first release. Checkout our

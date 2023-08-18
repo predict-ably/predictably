@@ -23,7 +23,7 @@ unit tests and docstrings if your pull request commits code to the repository.
 
 <!--
 If your contribution requires a new dependency please indicate why it is necessary.
-predictably seeks to mimimize dependencies to make it easy to use predictably in a variety
+predictably seeks to minimize dependencies to make it easy to use predictably in a variety
 of environments and contexts.
 -->
 
