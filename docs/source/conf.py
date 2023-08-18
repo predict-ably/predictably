@@ -1,4 +1,7 @@
-"""Configure Sphinx documentation builder."""
+"""Configure Sphinx documentation builder.
+
+Provides information needed to build docs. Includes HTML theme and other options.
+"""
 
 import datetime
 import inspect
@@ -107,18 +110,26 @@ issues_github_path = f"{org}/{project}"
 def linkcode_resolve(domain, info):
     """Return URL to source code corresponding.
 
+    Used to link docs to github code.
+
     Parameters
     ----------
     domain : str
+        Domain for resolving linked code.
     info : dict
+        Info about linked code.
 
     Returns
     -------
-    url : str
+    str
+        The string version URL to linked code.
     """
 
-    def find_source():
-        # try to find the file and line number, based on code from numpy:
+    def find_source():  # numpydoc ignore=RT01
+        """Find the file and line number (if possible).
+
+        Implementation is based on numpy.
+        """
         # https://github.com/numpy/numpy/blob/main/doc/source/conf.py#L286
         obj = sys.modules[info["module"]]
         for part in info["fullname"].split("."):
@@ -270,7 +281,8 @@ numpydoc_show_class_members = True
 # see https://github.com/numpy/numpydoc/issues/69
 numpydoc_class_members_toctree = False
 
-numpydoc_validation_checks = {"all", "GL01", "SA01", "EX01"}
+numpydoc_validation_checks = {"all", "GL01", "SA01"}
+numpydoc_validation_exclude = [r"\.__init__$"]
 
 # -- Options for sphinx-copybutton extension----------------------------------
 copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "
