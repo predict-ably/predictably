@@ -82,6 +82,9 @@ def test_format_seq_to_str() -> None:
         == "list and tuple"
     )
 
+    assert _format_seq_to_str(int) == "<class 'int'>"
+    assert _format_seq_to_str(int, remove_type_text=True) == "int"
+
     # Test with scalar inputs
     assert _format_seq_to_str(7) == "7"  # int, float, bool primitives cast to str
     assert _format_seq_to_str("some_str") == "some_str"
