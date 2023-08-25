@@ -4,9 +4,9 @@
 # are copyrighted by the skbase developers, BSD-3-Clause License. For
 # conditions see https://github.com/sktime/skbase/blob/main/LICENSE
 """Utility functionality for working with sequences."""  # numpydoc ignore=ES01
+import collections
 import re
-from collections.abc import Sequence
-from typing import Any, List, Optional, Union
+from typing import Any, List, Optional, Sequence, Union
 
 __author__: List[str] = ["RNKuhns"]
 __all__: List[str] = [
@@ -88,11 +88,14 @@ def _scalar_to_seq(scalar: Any, sequence_type: Optional[type] = None) -> Sequenc
     (1, 2)
     """
     # We'll treat str like regular scalar and not a sequence
-    if isinstance(scalar, Sequence) and not isinstance(scalar, str):
+    if isinstance(scalar, collections.abc.Sequence) and not isinstance(scalar, str):
         return scalar
     elif sequence_type is None:
         return (scalar,)
-    elif issubclass(sequence_type, Sequence) and sequence_type != Sequence:
+    elif (
+        issubclass(sequence_type, collections.abc.Sequence)
+        and sequence_type != Sequence
+    ):
         # Note calling (scalar,) is done to avoid str unpacking
         return sequence_type((scalar,))  # type: ignore
     else:
@@ -196,7 +199,7 @@ def _format_seq_to_str(
             return _remove_type_text(str(seq))
         else:
             return str(seq)
-    elif not isinstance(seq, Sequence):
+    elif not isinstance(seq, collections.abc.Sequence):
         msg = "`seq` must be a sequence or scalar str, int, float, bool or type."
         msg += f"\nBut found {type(seq)}."
         raise TypeError(msg)
