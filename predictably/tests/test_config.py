@@ -70,8 +70,8 @@ def test_global_config_param_is_valid_param_value(value):
     assert some_config_param.is_valid_param_value(value) == expected_valid
 
 
-def test_global_config_get_valid_or_default():
-    """Test GlobalConfigParamSetting.get_valid_param_or_default works as expected."""
+def test_global_config_get_valid_or_default_warns() -> None:
+    """Test GlobalConfigParamSetting.get_valid_param_or_default warns on invalid."""
     some_config_param = GlobalConfigParamSetting(
         name="some_param",
         expected_type=str,
@@ -81,7 +81,7 @@ def test_global_config_get_valid_or_default():
 
     # When calling the method with invalid value it should raise user warning
     with pytest.warns(UserWarning, match=r"When setting global.*"):
-        returned_value = some_config_param.get_valid_param_or_default(7, msg=None)
+        returned_value = some_config_param.get_valid_param_or_default(7)
 
     # And it should return the default value instead of the passed value
     assert returned_value == some_config_param.default_value
