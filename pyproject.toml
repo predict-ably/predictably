@@ -36,7 +36,9 @@ dependencies = [
 ]
 
 [project.optional-dependencies]
-all_extras = ["numpy", "pandas", "xarray", "pyarrow"]
+all_extras = ["numba", "numpy", "pandas", "fugue", "pyarrow"]
+
+cuda = ["cudf", "cupy"]
 
 dev = [
     "pre-commit",
@@ -78,6 +80,7 @@ test = [
     "pytest",
     "coverage",
     "pytest-cov",
+    "joblib",
 ]
 
 [project.urls]
@@ -134,7 +137,12 @@ exclude_dirs = ["*/tests/*", "*/testing/*"]
 
 [tool.numpydoc_validation]
 checks = ["all", "GL01", "SA01", "EX01"]
-exclude = ["\\.__init__$"]
+exclude = [
+    "\\.*tests.*",
+    "\\.__init__$",
+    "__init__$",
+    ".*tests.*"
+]
 
 [tool.setuptools]
 zip-safe = true
