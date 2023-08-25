@@ -282,7 +282,7 @@ numpydoc_show_class_members = True
 numpydoc_class_members_toctree = False
 
 numpydoc_validation_checks = {"all", "GL01", "SA01"}
-numpydoc_validation_exclude = [r"\.__init__$"]
+numpydoc_validation_exclude = [r".\\tests\\.*", r"\.__init__$"]
 
 # -- Options for sphinx-copybutton extension----------------------------------
 copybutton_prompt_text = r">>> |\.\.\. |\$ |In \[\d*\]: | {2,5}\.\.\.: | {5,8}: "

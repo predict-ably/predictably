@@ -71,6 +71,11 @@ repos:
       - id: mypy
         files: predictably/
         args: [--strict, --ignore-missing-imports]
+        exclude: |
+          (?x)(
+              /tests/|
+              docs/source
+          )
         additional_dependencies: []
 
   - repo: https://github.com/pycqa/pydocstyle
@@ -121,3 +126,8 @@ repos:
     rev: v1.6.0rc2
     hooks:
       - id: numpydoc-validation
+        exclude: |
+          (?x)(
+              /tests/|
+              docs/source
+          )
