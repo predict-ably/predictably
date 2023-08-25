@@ -92,6 +92,8 @@ def test_global_config_get_valid_or_default_warns() -> None:
         returned_value = some_config_param.get_valid_param_or_default(
             7, msg="some message"
         )
+    # And it should return the default value instead of the passed value
+    assert returned_value == some_config_param.default_value
 
 
 def test_get_default_config_always_returns_default(global_config_default):
