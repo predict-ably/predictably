@@ -47,6 +47,8 @@ def test_remove_type_text() -> None:
     msg = "Not leaving strings without <class ...> text unchanged."
     assert _remove_type_text("int") == "int", msg
     assert _remove_type_text("<type 'int'>") == "<type 'int'>", msg
+    msg = "Not removing ForwardRef"
+    assert _remove_type_text("ForwardRef('pd.DataFrame')") == "pd.DataFrame", msg
 
 
 def test_remove_single() -> None:
