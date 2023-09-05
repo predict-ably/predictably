@@ -32,7 +32,7 @@ classifiers = [
 ]
 requires-python = ">=3.8,<3.12"
 dependencies = [
-    "polars", "typing-extensions"
+    "attrs", "polars", "typing-extensions"
 ]
 
 [project.optional-dependencies]
