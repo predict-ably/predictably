@@ -5,8 +5,10 @@
 Users should use :func:`predictably.from_external_data` or call the `from_array`
 or `from_dataframe` on the applicable `predictably` data type.
 """
+from __future__ import annotations
+
 import sys
-from typing import List, Union
+from typing import Union
 
 if sys.version_info < (3, 10):
     from typing_extensions import TypeAlias
@@ -26,8 +28,8 @@ from predictably.data.types._types import (
 
 PredictablyDataType: TypeAlias = Union[CrossSection, Timeseries, Panel]
 
-__author__: List[str] = ["RNKuhns"]
-__all__: List[str] = ["from_external_data"]
+__author__: list[str] = ["RNKuhns"]
+__all__: list[str] = ["from_external_data"]
 
 
 def from_external_data(
