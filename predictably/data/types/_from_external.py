@@ -5,7 +5,13 @@
 Users should use :func:`predictably.from_external_data` or call the `from_array`
 or `from_dataframe` on the applicable `predictably` data type.
 """
-from typing import List, TypeAlias, Union
+import sys
+from typing import List, Union
+
+if sys.version_info < (3, 10):
+    from typing_extensions import TypeAlias
+else:
+    from typing import TypeAlias
 
 from predictably.data.types._base import Metadata
 from predictably.data.types._cross_section import CrossSection
