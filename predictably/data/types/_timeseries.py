@@ -74,7 +74,11 @@ class Timeseries(BasePredictablyDataType):  # numpydoc ignore=PR02
         Metadata
             The metadata about the input dataframe.
         """
-        raise NotImplementedError
+        if metadata is not None:
+            metadata_ = metadata
+        else:
+            metadata_ = Metadata()
+        return metadata_
 
     @classmethod
     def _array_to_dataframe(

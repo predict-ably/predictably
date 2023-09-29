@@ -6,21 +6,23 @@ All `predictably` data types should inherit from ``BasePredictablyDataType``.
 """
 from __future__ import annotations
 
+import collections
 import sys
 from typing import TYPE_CHECKING, Any, Literal, Sequence, overload
-
-if TYPE_CHECKING:
-    import numpy as np
-    import pandas as pd
-    import xarray as xa
 
 if sys.version_info < (3, 11):
     from typing_extensions import Self
 else:
     from typing import Self
 
+import attr
 import attrs
 import polars as pl
+
+if TYPE_CHECKING:  # pragma: no cover
+    import numpy as np  # pragma: no cover
+    import pandas as pd  # pragma: no cover
+    import xarray as xa  # pragma: no cover
 
 from predictably._base import BaseObject
 from predictably.data.types._types import (
@@ -30,13 +32,12 @@ from predictably.data.types._types import (
     check_supported_external_type,
     raise_not_supported_external_type,
 )
+from predictably.validate import is_sequence
 
 __author__: list[str] = ["RNKuhns"]
 __all__: list[str] = [
     "BasePredictablyDataType",
     "Metadata",
-    "SupportedArrays",
-    "SupportedDataFrames",
 ]
 
 
@@ -49,13 +50,18 @@ class Metadata:  # numpydoc ignore=PR02
     Parameters
     ----------
     field_names : sequence[str], default=None
-        The name of all the fields in the input data. For a dataset that does
-        not store field names (e.g., ``numpy.ndarray``) it should be a list of
-        the applicable names.
+        The name of all the fields in the input data.
+
+        - If data does not store field names (e.g., ``numpy.ndarray``) it should
+          be a list of the applicable names.
+        - If data has column names and index names (e.g., ``pandas.DataFrame``)
+          it should be the index name(s) followed by the column names.
+
     cross_section_dim : sequence[str], default=None
         The name of the cross-section dimension in the input data. This could be:
 
-        - The name of the the column(s) that define cross-sectional instances,
+        - The name of the the index-level(s) or column(s) that define
+          cross-sectional instances,
         - The name of an array dimension that define the cross-sectional dimension, or
         - The name of the dataframe index level that defines the cross-sectional
           dimension.
@@ -63,7 +69,7 @@ class Metadata:  # numpydoc ignore=PR02
     time_dim : str, default=None
         The name of the time dimension in the input data. This could be:
 
-        - The name of the the column that defines the time dimension,
+        - The name of the the index-level or column that defines the time dimension,
         - The name of an array dimension that defines the time dimension, or
         - The name of the dataframe index level that defines the time dimension.
 
@@ -80,17 +86,17 @@ class Metadata:  # numpydoc ignore=PR02
         The name of the data's fields that aren't cross-sectional or time dimensions.
     """
 
-    field_names: Sequence[str] | None = None
-    cross_section_dim: Sequence[str] | None = None
-    time_dim: str | None = None
-    additional_metadata: dict[str, Any] | None = None
+    field_names: Sequence[str] | str | None = attrs.field(default=None)
+    cross_section_dim: Sequence[str] | str | None = attrs.field(default=None)
+    time_dim: str | None = attrs.field(default=None)
+    additional_metadata: dict[str, Any] | None = attrs.field(default=None)
     # These are the attrs.fields used to capture post-init attributes that
     # represent cleaned version of user param arguments
     cross_section_dim_: list[str] = attrs.field(init=False, repr=False, default=None)
     time_dim_: list[str] = attrs.field(init=False, repr=False, default=None)
     data_fields_: list[str] = attrs.field(init=False, repr=False, default=None)
 
-    def __attrs_post_init___(self) -> None:
+    def __attrs_post_init__(self) -> None:
         """One-time post initialization variable augmentation.
 
         Used to determine the columns that are not cross-section or time-series IDs.
@@ -105,17 +111,202 @@ class Metadata:  # numpydoc ignore=PR02
             self.time_dim_ = []
         elif isinstance(self.time_dim, str):
             self.time_dim_ = [self.time_dim]
-        else:
-            self.time_dim_ = list(self.time_dim)
 
         if self.field_names is None:
             self.data_fields_ = []
         else:
+            field_names_: Sequence[str]
+            if isinstance(self.field_names, str):
+                field_names_ = [self.field_names]
+            else:
+                field_names_ = self.field_names
             self.data_fields_ = [
                 c
-                for c in self.field_names
+                for c in field_names_
                 if c not in self.cross_section_dim_ and c not in self.time_dim_
             ]
+
+    @field_names.validator  # type: ignore
+    def _validate_field_names(
+        self,
+        attribute: attr._make.Attribute,
+        field_names: Sequence[str] | str | None,
+        raise_error: bool = True,
+    ) -> bool:
+        """Validate the `field_names` parameter.
+
+        Provides custom attrs validator implementation that is called during
+        instantiation.
+
+        Parameters
+        ----------
+        attribute : attr._make.Attribute
+            Attrs attribute context.
+        field_names : sequence[str], default=None
+            The field names to validate.
+        raise_error : bool, default=True
+            Whether to raise an error if the type is not valid.
+
+        Returns
+        -------
+        bool
+            Whether the `field_names` parameter is expected type.
+
+        Raises
+        ------
+        ValueError
+            If the `field_names` input is unexpected type and ``raise_error=True``.
+        """
+        if field_names is None or isinstance(field_names, str):
+            field_names_okay = True
+        else:
+            if not isinstance(field_names, collections.abc.Sequence):
+                field_names_okay = False
+            else:
+                field_names_okay = is_sequence(
+                    field_names, sequence_type=(list, tuple), element_type=str
+                )
+        if raise_error and not field_names_okay:
+            msg = "`field_names` should be sequence of strings, a string or None."
+            msg += f" But found {field_names}."
+            raise ValueError(msg)
+        return field_names_okay
+
+    @cross_section_dim.validator  # type: ignore
+    def _validate_cross_section_dim(
+        self,
+        attribute: attr._make.Attribute,
+        cross_section_dim: Sequence[str] | str | None,
+        raise_error: bool = True,
+    ) -> bool:
+        """Validate the `cross_section_dim` parameter.
+
+        Provides custom attrs validator implementation that is called during
+        instantiation.
+
+        Parameters
+        ----------
+        attribute : attr._make.Attribute
+            Attrs attribute context.
+        cross_section_dim : sequence[str], default=None
+            The names of the cross section dimension(s) to validate.
+        raise_error : bool, default=True
+            Whether to raise an error if the type is not valid.
+
+        Returns
+        -------
+        bool
+            Indicates if `cross_section_dim` field passed validation.
+
+        Raises
+        ------
+        ValueError
+            If the `cross_section_dim` input is unexpected type and
+            ``raise_error=True``.
+        """
+        if cross_section_dim is None or isinstance(cross_section_dim, str):
+            cross_section_okay = True
+        else:
+            if not isinstance(cross_section_dim, collections.abc.Sequence):
+                cross_section_okay = False
+            else:
+                cross_section_okay = is_sequence(
+                    cross_section_dim, sequence_type=(list, tuple), element_type=str
+                )
+        if raise_error and not cross_section_okay:
+            msg = "`cross_section_dim` should be sequence of strings, a string or None."
+            msg += f" But found {cross_section_dim}."
+            raise ValueError(msg)
+        return cross_section_okay
+
+    @time_dim.validator  # type: ignore
+    def _validate_time_dim(
+        self,
+        attribute: attr._make.Attribute,
+        time_dim: str | None,
+        raise_error: bool = True,
+    ) -> bool:
+        """Validate the `time_dim` parameter.
+
+        Provides custom attrs validator implementation that is called during
+        instantiation.
+
+        Parameters
+        ----------
+        attribute : attr._make.Attribute
+            Attrs attribute context.
+        time_dim : sequence[str], default=None
+            The name of the time dimension to validate.
+        raise_error : bool, default=True
+            Whether to raise an error if the type is not valid.
+
+        Returns
+        -------
+        bool
+            Indicates if `time_dim` field passed validation.
+
+        Raises
+        ------
+        ValueError
+            If the `time_dim` input is unexpected type and ``raise_error=True``.
+        """
+        if time_dim is None or isinstance(time_dim, str):
+            time_dim_okay = True
+        else:
+            time_dim_okay = False
+            if raise_error:
+                msg = "`time_dim` should be a string or None. "
+                msg += f"But found {time_dim}."
+                raise ValueError(msg)
+        return time_dim_okay
+
+    @additional_metadata.validator  # type: ignore
+    def _validate_additional_metadata(
+        self,
+        attribute: attr._make.Attribute,
+        additional_metadata: dict[str, Any] | None,
+        raise_error: bool = True,
+    ) -> bool:
+        """Validate the `additional_metadata` parameter.
+
+        Provides custom attrs validator implementation that is called during
+        instantiation.
+
+        Parameters
+        ----------
+        attribute : attr._make.Attribute
+            Attrs attribute context.
+        additional_metadata : sequence[str], default=None
+            The additional metadata to validate.
+        raise_error : bool, default=True
+            Whether to raise an error if the type is not valid.
+
+        Returns
+        -------
+        bool
+            Indicates if `additional_metadata` field passed validation.
+
+        Raises
+        ------
+        ValueError
+            If the `additional_metadata` input is unexpected type and
+            ``raise_error=True``.
+        """
+        if isinstance(additional_metadata, dict):
+            is_dict = True
+            all_str_keys = all(isinstance(k, str) for k in additional_metadata)
+            additional_metadata_okay = is_dict and all_str_keys
+        elif additional_metadata is None:
+            additional_metadata_okay = True
+        else:
+            additional_metadata_okay = False
+
+        if raise_error and not additional_metadata_okay:
+            msg = "`additional_metadata` should be a dictionary with string keys."
+            msg += f" But found {additional_metadata}."
+            raise ValueError(msg)
+
+        return additional_metadata_okay
 
 
 @attrs.define(kw_only=False, slots=False)
@@ -147,10 +338,7 @@ class BasePredictablyDataType(BaseObject):  # numpydoc ignore=PR02
 
         Used to convert input data to a lazyframe.
         """
-        if self.dataframe is not None:
-            self.lazyframe = self._to_lazyframe(self.dataframe)
-        else:
-            self.lazyframe = None
+        self.lazyframe = self._to_lazyframe(self.dataframe)
 
     @classmethod
     def _generate_metadata(
@@ -301,12 +489,18 @@ class BasePredictablyDataType(BaseObject):  # numpydoc ignore=PR02
             return df
         elif isinstance(df, pl.DataFrame):
             return df.lazy()
-        elif isinstance(df, pd.DataFrame):
-            return pl.from_pandas(df).lazy()
-        elif hasattr(df, "__dataframe__"):
-            return pl.from_dataframe(df, allow_copy=True).lazy()
         else:
-            raise_not_supported_external_type(type_="dataframe")
+            from polars.dependencies import pandas as pd
+            from polars.dependencies import pyarrow as pa
+
+            if isinstance(df, pd.DataFrame):
+                return pl.from_pandas(df, include_index=True).lazy()
+            elif isinstance(df, pa.Table):
+                return pl.from_arrow(df).lazy()
+            elif hasattr(df, "__dataframe__"):
+                return pl.from_dataframe(df, allow_copy=True).lazy()
+            else:
+                raise_not_supported_external_type(type_="dataframe")
 
     @overload
     def to_dataframe(
