@@ -1,5 +1,8 @@
 #!/usr/bin/env python3 -u
 # copyright: predict-ably, BSD-3-Clause License (see LICENSE file)
+# Elements of predictably.validate reuse code developed for skbase. These elements
+# are copyrighted by the skbase developers, BSD-3-Clause License. For
+# conditions see https://github.com/sktime/skbase/blob/main/LICENSE
 """The base class used throughout `predictably`.
 
 `predictably` classes typically inherit from ``BaseClass``.
@@ -18,6 +21,7 @@ import attrs
 
 from predictably import get_config
 from predictably._config import _CONFIG_REGISTRY
+from predictably._exceptions import NotFittedError
 
 __author__: List[str] = ["RNKuhns"]
 __all__: List[str] = []
@@ -386,3 +390,71 @@ class BaseObject:
         self._set_flags(flag_name="_config", **config_dict)
 
         return self
+
+
+@attrs.define(kw_only=False, slots=False)
+class BaseEstimator(BaseObject):
+    """Base class for estimators with scikit-learn and sktime design patterns.
+
+    Extends BaseObject to include basic functionality for fittable estimators.
+    """
+
+    _is_fitted: bool = attrs.field(
+        init=False, repr=False, alias="_is_fitted", default=False
+    )
+
+    def __attrs_pre_init__(self) -> None:
+        """Execute prior to init.
+
+        Used to make sure attrs is executing __init__ of parent(s).
+        """
+        super().__init__()
+
+    @property
+    def is_fitted(self) -> bool:
+        """Whether `fit` has been called.
+
+        Inspects object's `_is_fitted` attribute that should initialize to False
+        during object construction, and be set to True in calls to an object's
+        `fit` method.
+
+        Returns
+        -------
+        bool
+            Whether the estimator has been `fit`.
+        """
+        return self._is_fitted
+
+    def check_is_fitted(self, raise_error: bool = True) -> bool:
+        """Check if the estimator has been fitted.
+
+        Inspects object's `_is_fitted` attribute that should initialize to False
+        during object construction, and be set to True in calls to an object's
+        `fit` method.
+
+        Parameters
+        ----------
+        raise_error : bool, default=True
+            Whether to raise an error if estimator is not fitted.
+
+            - If ``raise_error is True`` (default) then an error is raised if the
+              estimator is not fitted.
+            - Otherwise, returns True or False indicating if the estimator has been fit.
+
+        Returns
+        -------
+        bool
+            Whether the estimator has been fit.
+
+        Raises
+        ------
+        NotFittedError
+            If the estimator has not been fitted yet.
+        """
+        if not self.is_fitted and raise_error:
+            raise NotFittedError(
+                f"This instance of {self.__class__.__name__} has not been fitted yet. "
+                f"Please call `fit` first."
+            )
+        else:
+            return self.is_fitted
