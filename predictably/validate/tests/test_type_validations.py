@@ -357,19 +357,19 @@ def test_convert_scalar_seq_type_input_to_tuple_raises_error():
     """Test _convert_scalar_seq_type_input_to_tuple raises error."""
     # Raises because 7 is not a type
     with pytest.raises(
-        TypeError, match=r"`type_input` should be a type or tuple of types."
+        TypeError, match=r"`type_input` should be a type or sequence of types."
     ):
         _convert_scalar_seq_type_input_to_tuple(7)
 
     # Test error message uses input_name
     with pytest.raises(
-        TypeError, match=r"`some_input` should be a type or tuple of types."
+        TypeError, match=r"`some_input` should be a type or sequence of types."
     ):
         _convert_scalar_seq_type_input_to_tuple(7, input_name="some_input")
 
     # Raises error because dict is a type but not a subclass of type_input_subclass
     with pytest.raises(
-        TypeError, match=r"`type_input` should be a type or tuple of types."
+        TypeError, match=r"`type_input` should be a type or sequence of types."
     ):
         _convert_scalar_seq_type_input_to_tuple(
             dict,
