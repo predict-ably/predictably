@@ -10,11 +10,11 @@ from typing import List
 
 import pytest
 
-from predictably._exceptions import ForwardRefError
+from predictably._exceptions import ForwardRefError, NotFittedError
 
 __author__: List[str] = ["RNKuhns"]
 
-ALL_EXCEPTIONS = (ForwardRefError,)
+ALL_EXCEPTIONS = (ForwardRefError, NotFittedError)
 
 
 @pytest.mark.parametrize("predictably_exception", ALL_EXCEPTIONS)
