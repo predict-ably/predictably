@@ -22,7 +22,7 @@ from typing import (
     overload,
 )
 
-from predictably._base import BaseObject
+from predictably._core._base import BaseObject
 
 __all__: List[str] = ["check_sequence_named_objects", "is_sequence_named_objects"]
 __author__: List[str] = ["RNKuhns"]
@@ -121,7 +121,7 @@ def is_sequence_named_objects(
 
     Examples
     --------
-    >>> from predictably._base import BaseObject, BaseEstimator
+    >>> from predictably._core._base import BaseObject, BaseEstimator
     >>> from predictably.validate import is_sequence_named_objects
     >>> named_objects = [("Step 1", BaseObject()), ("Step 2", BaseObject())]
     >>> is_sequence_named_objects(named_objects)
@@ -304,7 +304,7 @@ def check_sequence_named_objects(
 
     Examples
     --------
-    >>> from predictably._base import BaseObject, BaseEstimator
+    >>> from predictably._core._base import BaseObject, BaseEstimator
     >>> from predictably.validate import check_sequence_named_objects
     >>> named_objects = [("Step 1", BaseObject()), ("Step 2", BaseObject())]
     >>> check_sequence_named_objects(named_objects)

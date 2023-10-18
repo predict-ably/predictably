@@ -12,7 +12,7 @@ import pprint
 from collections import OrderedDict
 
 from predictably._core._base import BaseObject
-from predictably.utils._check import _is_scalar_nan
+from predictably.validate._types import _is_scalar_nan
 
 
 class KeyValTuple(tuple):

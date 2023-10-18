@@ -14,7 +14,7 @@ tests in this module include:
 __author__ = ["RNKuhns"]
 import pytest
 
-from predictably._base import BaseEstimator, BaseObject
+from predictably._core._base import BaseEstimator, BaseObject
 from predictably.validate import check_sequence_named_objects, is_sequence_named_objects
 
 

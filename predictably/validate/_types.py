@@ -10,6 +10,8 @@ For specific functionality to validate the `predictably` data types, see
 """
 import collections
 import inspect
+import math
+import numbers
 from typing import TYPE_CHECKING, Any, List, Optional, Sequence, Tuple, Union
 
 from predictably.utils._iter import (
@@ -65,7 +67,7 @@ def check_type(
 
     Examples
     --------
-    >>> from predictably._base import BaseEstimator, BaseObject
+    >>> from predictably._core._base import BaseEstimator, BaseObject
     >>> from predictably.validate import check_type
     >>> check_type(7, expected_type=int)
     7
@@ -74,7 +76,7 @@ def check_type(
     >>> check_type(BaseEstimator(), BaseObject)
     BaseEstimator()
     >>> check_type(BaseEstimator, expected_type=BaseObject, use_subclass=True)
-    <class 'predictably._base.BaseEstimator'>
+    <class 'predictably._core._base.BaseEstimator'>
 
     An error is raised if the input is not the expected type
 
@@ -216,7 +218,7 @@ def is_sequence(
 
     Examples
     --------
-    >>> from predictably._base import BaseEstimator, BaseObject
+    >>> from predictably._core._base import BaseEstimator, BaseObject
     >>> from predictably.validate import is_sequence
     >>> is_sequence([1, 2, 3])
     True
@@ -316,7 +318,7 @@ def check_sequence(
 
     Examples
     --------
-    >>> from predictably._base import BaseEstimator, BaseObject
+    >>> from predictably._core._base import BaseEstimator, BaseObject
     >>> from predictably.validate import is_sequence
 
     >>> check_sequence([1, 2, 3])
@@ -394,3 +396,41 @@ def check_sequence(
         return output_
 
     return input_seq
+
+
+def _is_scalar_nan(x: Any) -> bool:
+    """Test if x is NaN.
+
+    This function is meant to overcome the issue that np.isnan does not allow
+    non-numerical types as input, and that np.nan is not float('nan').
+
+    Parameters
+    ----------
+    x : Any
+        The item to be checked to determine if it is a scalar nan value.
+
+    Returns
+    -------
+    bool
+        True if `x` is a scalar nan value.
+
+    Notes
+    -----
+    This code follows scikit-learn's implementation.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> from predictably.validate._types import _is_scalar_nan
+    >>> _is_scalar_nan(np.nan)
+    True
+    >>> _is_scalar_nan(float("nan"))
+    True
+    >>> _is_scalar_nan(None)
+    False
+    >>> _is_scalar_nan("")
+    False
+    >>> _is_scalar_nan([np.nan])
+    False
+    """
+    return isinstance(x, numbers.Real) and math.isnan(x)

@@ -21,7 +21,7 @@ import collections
 # import numpy as np
 import pytest
 
-from predictably._base import BaseEstimator, BaseObject
+from predictably._core._base import BaseEstimator, BaseObject
 from predictably.validate import check_sequence, check_type, is_sequence
 from predictably.validate._types import _convert_scalar_seq_type_input_to_tuple
 
