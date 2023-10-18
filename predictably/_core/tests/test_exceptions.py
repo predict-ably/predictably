@@ -23,6 +23,10 @@ def test_exceptions_raise_error(predictably_exception):
     with pytest.raises(predictably_exception):
         raise predictably_exception()
 
+
+@pytest.mark.parametrize("predictably_exception", ALL_EXCEPTIONS)
+def test_exceptions_raise_error_with_message(predictably_exception):
+    """Test that predictably exceptions raise an error with msg as expected."""
     msg = "Some message."
     with pytest.raises(predictably_exception, match=msg):
         raise predictably_exception(msg)
