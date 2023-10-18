@@ -775,7 +775,7 @@ class BaseObject:
 
         return composite
 
-    def _components(self, base_class: Optional[type] = None) -> dict[str, Any]:
+    def _components(self, base_class: Optional[type] = None) -> Dict[str, Any]:
         """Return references to all state changing BaseObject type attributes.
 
         This *excludes* the blue-print-like components passed in the __init__.
@@ -921,7 +921,7 @@ class BaseObject:
         """
         return _object_html_repr(self)
 
-    def _repr_mimebundle_(self, **kwargs: Any) -> dict[str, Any]:
+    def _repr_mimebundle_(self, **kwargs: Any) -> Dict[str, Any]:
         """Mime bundle used by jupyter kernels to display instances of BaseObject.
 
         Captures the standard string representation and based on configuration
