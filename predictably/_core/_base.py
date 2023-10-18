@@ -59,7 +59,7 @@ class BaseObject:
     )
 
     @classmethod
-    def _get_init_signature(cls) -> list[inspect.Parameter]:
+    def _get_init_signature(cls) -> List[inspect.Parameter]:
         """Get class init signature.
 
         Useful in parameter inspection.
