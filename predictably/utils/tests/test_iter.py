@@ -47,6 +47,8 @@ def test_remove_type_text() -> None:
     msg = "Not leaving strings without <class ...> text unchanged."
     assert _remove_type_text("int") == "int", msg
     assert _remove_type_text("<type 'int'>") == "<type 'int'>", msg
+    msg = "Not removing ForwardRef"
+    assert _remove_type_text("ForwardRef('pd.DataFrame')") == "pd.DataFrame", msg
 
 
 def test_remove_single() -> None:
@@ -107,6 +109,9 @@ def test_scalar_to_seq_expected_output() -> None:
     # Verify it works with scalar classes and objects
     assert _scalar_to_seq(int) == (int,)
     assert _scalar_to_seq(SomeClass) == (SomeClass,)
+    # Verify things work with class instance
+    some_class = SomeClass()
+    assert _scalar_to_seq(some_class) == (some_class,)
     # Verify strings treated like scalar not sequence
     assert _scalar_to_seq("some_str") == ("some_str",)
     assert _scalar_to_seq("some_str", sequence_type=list) == ["some_str"]

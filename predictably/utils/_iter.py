@@ -128,15 +128,23 @@ def _remove_type_text(input_: Union[str, type]) -> str:
     'int'
     >>> _remove_type_text("int")
     'int'
+    >>> _remove_type_text("ForwardRef('pd.DataFrame')")
+    'pd.DataFrame'
     """
     if not isinstance(input_, str):
         input_ = str(input_)
 
     m = re.match("^<class '(.*)'>$", input_)
+
     if m:
         return m[1]
+
     else:
-        return input_
+        m_forward_ref = re.match(r"^ForwardRef\('(.*)'\)", input_)
+        if m_forward_ref:
+            return m_forward_ref[1]
+        else:
+            return input_
 
 
 def _format_seq_to_str(
