@@ -1,8 +1,8 @@
 # copyright: skbase developers, BSD-3-Clause License (see LICENSE file)
-# Elements of these tests re-use code developed in scikit-learn. These elements
+# Elements of these tests reuse code developed in scikit-learn. These elements
 # are copyrighted by the scikit-learn developers, BSD-3-Clause License. For
 # conditions see https://github.com/scikit-learn/scikit-learn/blob/main/COPYING
-# Elements of these tests also re-use code developed for skbase. These elements
+# Elements of these tests also reuse code developed for skbase. These elements
 # are copyrighted by the skbase developers, BSD-3-Clause License. For
 # conditions see https://github.com/sktime/skbase/blob/main/LICENSE
 """Tests for BaseObject universal base class.

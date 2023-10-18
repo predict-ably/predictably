@@ -793,7 +793,7 @@ class BaseObject:
         Returns
         -------
         dict[str, Any]
-            Mapping of object attribute names that are objects inheritting from
+            Mapping of object attribute names that are objects inheriting from
             `base_class` whose name does not contain the string "__".
 
         Raises

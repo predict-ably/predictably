@@ -85,7 +85,7 @@ def _get_forward_ref_module_name(fref: str, return_abbrev: bool = False) -> str:
     str
         The name or abbreviation of the module for the forward reference.
     """
-    msg = f"Error deriving name of forward ref for unsupported depenedency {fref}."
+    msg = f"Error deriving name of forward ref for unsupported dependency {fref}."
     if return_abbrev:
         if fref in dependency_abbrev_map:
             value_ = fref

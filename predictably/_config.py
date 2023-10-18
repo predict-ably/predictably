@@ -182,9 +182,9 @@ def set_config(
         'SVC(C=1.0, cache_size=200, ...)' with all the non-changed parameters
         when False. If None, the existing value won't change.
     display : {'text', 'diagram'}, default=None
-        If 'diagram', instances inheritting from BaseOBject will be displayed
+        If 'diagram', instances inheriting from BaseOBject will be displayed
         as a diagram in a Jupyter lab or notebook context. If 'text', instances
-        inheritting from BaseObject will be displayed as text. If None, the
+        inheriting from BaseObject will be displayed as text. If None, the
         existing value won't change.
     local_threadsafe : bool, default=False
         If False, set the backend as default for all threads.
@@ -357,9 +357,9 @@ def config_context(
         'Model(C=1.0, cache_size=200, ...)' with all the unchanged parameters
         when False. If None, the existing value won't change.
     display : {'text', 'diagram'}, default=None
-        If 'diagram', instances inheritting from BaseOBject will be displayed
+        If 'diagram', instances inheriting from BaseOBject will be displayed
         as a diagram in a Jupyter lab or notebook context. If 'text', instances
-        inheritting from BaseObject will be displayed as text. If None, the
+        inheriting from BaseObject will be displayed as text. If None, the
         existing value won't change.
     local_threadsafe : bool, default=False
         If False, set the config as default for all threads.
