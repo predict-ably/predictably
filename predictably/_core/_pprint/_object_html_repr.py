@@ -356,7 +356,7 @@ def _object_html_repr(base_object: prc._base.BaseOBject) -> str:
     Parameters
     ----------
     base_object : object
-        The BaseObject, inheritting class or class following the API that should be
+        The BaseObject, inheriting class or class following the API that should be
          visualized.
 
     Returns
