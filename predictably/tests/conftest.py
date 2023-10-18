@@ -1,6 +1,6 @@
 """Common functionality for skbase unit tests."""
 from copy import deepcopy
-from typing import Any, ClassVar, List, Optional
+from typing import Any, ClassVar, Dict, List, Optional
 
 import attrs
 
@@ -17,7 +17,7 @@ PREDICTABLY_BASE_CLASSES = (BaseObject, BaseEstimator)
 class Parent(BaseObject):
     """Parent class to test BaseObject's usage."""
 
-    _tags: ClassVar[dict[str, Any]] = {"A": "1", "B": 2, "C": 1234, "3": "D"}
+    _tags: ClassVar[Dict[str, Any]] = {"A": "1", "B": 2, "C": 1234, "3": "D"}
 
     a: str = "something"
     b: int = 7
@@ -33,7 +33,7 @@ class Parent(BaseObject):
 class Child(Parent):
     """Child class that is child of FixtureClassParent."""
 
-    _tags: ClassVar[dict[str, Any]] = {"A": 42, "3": "E"}
+    _tags: ClassVar[Dict[str, Any]] = {"A": 42, "3": "E"}
     __author__: ClassVar[List[str]] = ["Someone", "Someone Else"]
 
     def some_method(self):
