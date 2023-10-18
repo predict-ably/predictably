@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 -u
 # copyright: predictably developers, BSD-3-Clause License (see LICENSE file)
-# Elements of these tests re-use code developed for skbase. These elements
+# Elements of these tests reuse code developed for skbase. These elements
 # are copyrighted by the skbase developers, BSD-3-Clause License. For
 # conditions see https://github.com/sktime/skbase/blob/main/LICENSE
 """Tests for BaseEstimator class.
