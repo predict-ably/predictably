@@ -24,7 +24,7 @@ if TYPE_CHECKING:  # pragma: no cover
     import pandas as pd  # pragma: no cover
     import xarray as xa  # pragma: no cover
 
-from predictably._base import BaseObject
+from predictably._core._base import BaseObject
 from predictably.data.types._types import (
     SupportedArrays,
     SupportedDataFrames,
@@ -41,7 +41,7 @@ __all__: list[str] = [
 ]
 
 
-@attrs.define(kw_only=True, slots=False)
+@attrs.define(kw_only=True, slots=False, repr=False)
 class Metadata:  # numpydoc ignore=PR02
     """Define metadata for `predictably` data types.
 
@@ -309,7 +309,7 @@ class Metadata:  # numpydoc ignore=PR02
         return additional_metadata_okay
 
 
-@attrs.define(kw_only=False, slots=False)
+@attrs.define(kw_only=False, slots=False, repr=False)
 class BasePredictablyDataType(BaseObject):  # numpydoc ignore=PR02
     """Base class for `predictably` data types.
 

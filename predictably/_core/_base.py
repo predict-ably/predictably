@@ -38,7 +38,7 @@ from predictably._core._pprint._object_html_repr import _object_html_repr
 from predictably.utils._iter import _format_seq_to_str
 
 __author__: List[str] = ["RNKuhns"]
-__all__: List[str] = []
+__all__: List[str] = ["BaseEstimator", "BaseObject"]
 
 
 @attrs.define(kw_only=True, slots=False, repr=False)

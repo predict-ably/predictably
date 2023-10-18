@@ -34,7 +34,7 @@ else:
 
 import polars as pl
 
-from predictably._exceptions import ForwardRefError
+from predictably._core._exceptions import ForwardRefError
 from predictably.utils._iter import _format_seq_to_str, _remove_type_text
 
 SupportedDataFrames: TypeAlias = Union[

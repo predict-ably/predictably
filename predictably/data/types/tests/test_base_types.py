@@ -14,7 +14,7 @@ import xarray as xa
 __all__: List[str] = []
 __author__: List[str] = ["RNKuhns"]
 
-from predictably._exceptions import ForwardRefError
+from predictably._core._exceptions import ForwardRefError
 from predictably.data.types._base import BasePredictablyDataType, Metadata
 from predictably.data.types._types import (
     _evaluate_available_forward_refs,
