@@ -32,7 +32,7 @@ classifiers = [
 ]
 requires-python = ">=3.8,<3.12"
 dependencies = [
-    "polars",
+    "attrs>=0.22.2", "polars", "typing-extensions"
 ]
 
 [project.optional-dependencies]
@@ -81,6 +81,10 @@ test = [
     "coverage",
     "pytest-cov",
     "joblib",
+    "numpy",
+    "pandas",
+    "pyarrow",
+    "xarray"
 ]
 
 [project.urls]
