@@ -1,6 +1,6 @@
 #!/usr/bin/env python3 -u
 # copyright: predictably developers, BSD-3-Clause License (see LICENSE file)
-# Elements of predictably.validate reuse code developed for skbase. These elements
+# Elements of these tests re-use code developed for skbase. These elements
 # are copyrighted by the skbase developers, BSD-3-Clause License. For
 # conditions see https://github.com/sktime/skbase/blob/main/LICENSE
 """Tests for BaseEstimator class.
@@ -15,13 +15,13 @@ tests in this module:
       an error when an estimator is unfitted an ``raise_error is True``.
 """
 
-__author__ = ["fkiraly", "RNKuhns"]
+__author__ = ["RNKuhns"]
 import inspect
 
 import pytest
 
-from predictably._base import BaseEstimator, BaseObject
-from predictably._exceptions import NotFittedError
+from predictably._core._base import BaseEstimator, BaseObject
+from predictably._core._exceptions import NotFittedError
 
 
 @pytest.fixture

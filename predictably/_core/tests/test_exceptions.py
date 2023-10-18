@@ -10,7 +10,7 @@ from typing import List
 
 import pytest
 
-from predictably._exceptions import ForwardRefError, NotFittedError
+from predictably._core._exceptions import ForwardRefError, NotFittedError
 
 __author__: List[str] = ["RNKuhns"]
 
