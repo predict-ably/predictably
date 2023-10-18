@@ -82,8 +82,9 @@ test = [
     "pytest-cov",
     "joblib",
     "numpy",
-    "xarray",
-    "pandas"
+    "pandas",
+    "pyarrow",
+    "xarray"
 ]
 
 [project.urls]
