@@ -74,6 +74,7 @@ docs = [
     "sphinx-copybutton",
     "sphinx-design",
     "sphinx-issues",
+    "charset-normalizer<3.3",
 ]
 
 test = [
