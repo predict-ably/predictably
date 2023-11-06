@@ -129,7 +129,13 @@ precision = 2
 
 [tool.coverage.run]
 source = ["predictably"]
-omit = ["*/setup.py", "*/tests/*", "docs/*", "predictably/tests/*"]
+omit = [
+    "*/setup.py",
+    "*/tests/*",
+    "docs/*",
+    "predictably/tests/*",
+    "predictably/_core/_pprint/*"
+]
 
 [tool.doc8]
 max-line-length = 88
