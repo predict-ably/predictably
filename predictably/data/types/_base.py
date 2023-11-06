@@ -41,7 +41,7 @@ __all__: list[str] = [
 ]
 
 
-@attrs.define(kw_only=True, slots=False, repr=False)
+@attrs.define(kw_only=True, slots=False, repr=True)
 class Metadata:  # numpydoc ignore=PR02
     """Define metadata for `predictably` data types.
 
@@ -61,17 +61,15 @@ class Metadata:  # numpydoc ignore=PR02
         The name of the cross-section dimension in the input data. This could be:
 
         - The name of the the index-level(s) or column(s) that define
-          cross-sectional instances,
-        - The name of an array dimension that define the cross-sectional dimension, or
-        - The name of the dataframe index level that defines the cross-sectional
+          cross-sectional instances, or
+        - The name or position of an array dimension that define the cross-sectional
           dimension.
 
     time_dim : str, default=None
         The name of the time dimension in the input data. This could be:
 
-        - The name of the the index-level or column that defines the time dimension,
-        - The name of an array dimension that defines the time dimension, or
-        - The name of the dataframe index level that defines the time dimension.
+        - The name of the the index-level or column that defines the time dimension, or
+        - The name or position of an array dimension that defines the time dimension.
 
     additional_metadata : dict[str, Any], default=None
         Mapping of additional metadata names to values.
