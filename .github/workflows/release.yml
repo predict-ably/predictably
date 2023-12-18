@@ -42,7 +42,7 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: wheels
           path: wheelhouse
@@ -103,7 +103,7 @@ jobs:
       - run: conda --version
       - run: which python
 
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: wheels
           path: wheelhouse
@@ -136,7 +136,7 @@ jobs:
     needs: [build_wheels,test_unix_wheels,test_windows_wheels]
 
     steps:
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: wheels
           path: wheelhouse
