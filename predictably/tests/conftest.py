@@ -1,4 +1,5 @@
 """Common functionality for skbase unit tests."""
+
 from copy import deepcopy
 from typing import Any, ClassVar, Dict, List, Optional
 
