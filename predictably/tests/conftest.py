@@ -7,7 +7,7 @@ import attrs
 
 from predictably._core._base import BaseEstimator, BaseObject
 
-__all__: List[str] = ["Parent", "Child"]
+__all__: List[str] = ["Child", "Parent"]
 __author__: List[str] = ["RNKuhns"]
 
 PREDICTABLY_BASE_CLASSES = (BaseObject, BaseEstimator)

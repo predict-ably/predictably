@@ -18,9 +18,9 @@ __version__: str = "0.2.0"
 
 __author__: List[str] = ["RNKuhns"]
 __all__: List[str] = [
-    "get_default_config",
-    "get_config",
-    "set_config",
-    "reset_config",
     "config_context",
+    "get_config",
+    "get_default_config",
+    "reset_config",
+    "set_config",
 ]

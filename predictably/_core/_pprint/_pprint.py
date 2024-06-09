@@ -131,7 +131,7 @@ class _BaseObjectPrettyPrinter(pprint.PrettyPrinter):
         # (they are treated as dicts)
         self.n_max_elements_to_show = n_max_elements_to_show
 
-    def format(self, obj, context, maxlevels, level):  # noqa: A003
+    def format(self, obj, context, maxlevels, level):
         return _safe_repr(
             obj, context, maxlevels, level, changed_only=self.changed_only
         )
