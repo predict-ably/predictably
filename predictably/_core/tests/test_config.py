@@ -347,7 +347,6 @@ def test_config_threadsafe():
     between threads. Same test as `test_config_threadsafe_joblib` but with
     `ThreadPoolExecutor`.
     """
-
     print_changed_only_vals = [False, True, False, True]
     sleep_durations = [0.1, 0.2, 0.1, 0.2]
 

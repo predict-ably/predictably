@@ -23,31 +23,6 @@ tests in this module:
 __author__ = ["RNKuhns"]
 
 __all__ = [
-    "test_get_class_tags",
-    "test_get_class_tag",
-    "test_get_tags",
-    "test_get_tag",
-    "test_get_tag_raises",
-    "test_set_tags",
-    "test_set_tags_works_with_missing_tags_dynamic_attribute",
-    "test_clone_tags",
-    "test_is_composite",
-    "test_components",
-    "test_components_raises_error_base_class_is_not_class",
-    "test_components_raises_error_base_class_is_not_baseobject_subclass",
-    "test_reset",
-    "test_reset_composite",
-    "test_get_init_signature",
-    "test_get_init_signature_raises_error_for_invalid_signature",
-    "test_get_param_names",
-    "test_get_params",
-    "test_get_params_invariance",
-    "test_get_params_after_set_params",
-    "test_set_params",
-    "test_set_params_raises_error_non_existent_param",
-    "test_set_params_raises_error_non_interface_composite",
-    "test_raises_on_get_params_for_param_arg_not_assigned_to_attribute",
-    "test_set_params_with_no_param_to_set_returns_object",
     # "test_clone",
     # "test_clone_2",
     # "test_clone_raises_error_for_nonconforming_objects",
@@ -59,15 +34,40 @@ __all__ = [
     # "test_clone_class_rather_than_instance_raises_error",
     # "test_clone_sklearn_composite",
     "test_baseobject_repr",
-    "test_baseobject_str",
     "test_baseobject_repr_mimebundle_",
-    "test_repr_html_wraps",
+    "test_baseobject_str",
+    "test_clone_tags",
+    "test_components",
+    "test_components_raises_error_base_class_is_not_baseobject_subclass",
+    "test_components_raises_error_base_class_is_not_class",
     # "test_get_test_params",
     # "test_get_test_params_raises_error_when_params_required",
     # "test_create_test_instance",
     # "test_create_test_instances_and_names",
     # "test_has_implementation_of",
     "test_eq_dunder",
+    "test_get_class_tag",
+    "test_get_class_tags",
+    "test_get_init_signature",
+    "test_get_init_signature_raises_error_for_invalid_signature",
+    "test_get_param_names",
+    "test_get_params",
+    "test_get_params_after_set_params",
+    "test_get_params_invariance",
+    "test_get_tag",
+    "test_get_tag_raises",
+    "test_get_tags",
+    "test_is_composite",
+    "test_raises_on_get_params_for_param_arg_not_assigned_to_attribute",
+    "test_repr_html_wraps",
+    "test_reset",
+    "test_reset_composite",
+    "test_set_params",
+    "test_set_params_raises_error_non_existent_param",
+    "test_set_params_raises_error_non_interface_composite",
+    "test_set_params_with_no_param_to_set_returns_object",
+    "test_set_tags",
+    "test_set_tags_works_with_missing_tags_dynamic_attribute",
 ]
 
 import inspect
@@ -984,7 +984,7 @@ def test_baseobject_repr(
     long_base_obj_repr = fixture_class_parent(a=["long_params"] * 1000)
     assert len(repr(long_base_obj_repr)) == 535
 
-    named_objs = [(f"Step {i+1}", Child()) for i in range(25)]
+    named_objs = [(f"Step {i + 1}", Child()) for i in range(25)]
     base_comp = CompositionDummy(foo=Parent(c=Child(c=named_objs)))
     assert len(repr(base_comp)) == 1362
 

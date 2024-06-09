@@ -32,7 +32,7 @@ github_tag = f"v{version}"
 # Cython files. Hence, we do not add the source code path to the system path.
 env_rtd = os.environ.get("READTHEDOCS")
 # Check if on Read the docs
-if not env_rtd == "True":
+if env_rtd != "True":
     print("Not on ReadTheDocs")
     sys.path.insert(0, os.path.abspath("../.."))
 else:
@@ -186,7 +186,7 @@ html_theme_options = {
         },
         {
             "name": "Slack",
-            "url": f"https://join.slack.com/t/{org}/shared_invite/zt-21ezi33ip-WGJCUBCWc5yVrr6FOsARaw",  # noqa: E501
+            "url": f"https://join.slack.com/t/{org}/shared_invite/zt-21ezi33ip-WGJCUBCWc5yVrr6FOsARaw",
             "icon": "fab fa-slack",
         },
         {
