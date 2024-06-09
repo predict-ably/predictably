@@ -58,6 +58,8 @@ linters = [
     "flake8-builtins",
     "flake8-quotes",
     "flake8-comprehensions",
+    "flake8-bandit",
+    "flake8-pydocstyle",
     "pandas-vet",
     "flake8-print",
     "pep8-naming",
@@ -115,13 +117,58 @@ addopts = [
 profile = "black"
 src_paths = ["predictably/*"]
 multi_line_output = 3
-known_first_party = ["predictably"]
+known_first_party = ["predictably", "predictably-core"]
 
 [tool.black]
 line-length = 88
 
 [tool.pydocstyle]
 convention = "numpy"
+
+[tool.ruff]
+line-length = 88
+indent-width = 4
+
+[tool.ruff.lint]
+select = [
+    "E",
+    "F",
+    "I",
+    "B",
+    "N",
+    "A",
+    "D",
+    "Q",
+    "UP",
+    "SIM",
+    "W",
+    "S",
+    "C4",
+    "T20",
+    "PTH",
+    "RUF",
+]
+ignore = ["D413", "W191"]
+unfixable = ["B"]
+preview = true
+
+[tool.ruff.lint.per-file-ignores]
+"**/tests/*.py" = ["S101"]
+
+[tool.ruff.format]
+# Setup to format like black
+quote-style = "double"
+indent-style = "space"
+skip-magic-trailing-comma = false
+line-ending = "auto"
+
+docstring-code-line-length = "dynamic"
+
+[tool.ruff.lint.pydocstyle]
+convention = "numpy"
+
+[tool.ruff.lint.flake8-quotes]
+docstring-quotes = "double"
 
 [tool.coverage.report]
 show_missing = true
@@ -144,7 +191,7 @@ ignore = ["D004"]
 ignore_path = ["docs/_build", "docs/source/api_reference/auto_generated"]
 
 [tool.bandit]
-exclude_dirs = ["*/tests/*", "*/testing/*"]
+exclude_dirs = ["**/tests/*", "**/testing/*"]
 
 [tool.numpydoc_validation]
 checks = ["all", "GL01", "SA01", "EX01"]
