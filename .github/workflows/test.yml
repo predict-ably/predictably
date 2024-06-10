@@ -35,7 +35,7 @@ jobs:
         uses: tj-actions/changed-files@v42.0.2
       - name: List changed files
         run: echo '${{ steps.changed-files.outputs.all_changed_files }}'
-      - uses: pre-commit/action@v3.0.0
+      - uses: pre-commit/action@v3.0.1
         with:
           extra_args: --files ${{ steps.changed-files.outputs.all_changed_files }}
       - name: Check for missing init files
