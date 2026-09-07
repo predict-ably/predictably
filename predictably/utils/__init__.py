@@ -8,6 +8,7 @@
 This module includes general utilities. Statistical utilities will be kept in
 predictably.stats.utils.
 """
+
 from typing import List
 
 __author__: List[str] = ["RNKuhns"]

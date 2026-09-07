@@ -4,6 +4,7 @@
 
 Used to store information about predictably's global configuration.
 """
+
 import collections
 import warnings
 from dataclasses import dataclass
@@ -95,9 +96,11 @@ class GlobalConfigParamSetting:
             Whether a parameter value is valid.
         """
         valid_param: bool
-        if not isinstance(value, self.expected_type):
-            valid_param = False
-        elif self.allowed_values is not None and value not in self.get_allowed_values():
+        if (
+            not isinstance(value, self.expected_type)
+            or self.allowed_values is not None
+            and value not in self.get_allowed_values()
+        ):
             valid_param = False
         else:
             valid_param = True
