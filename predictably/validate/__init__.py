@@ -8,6 +8,7 @@
 This module contains functions used throughout `predictably` to provide standard
 validation of inputs to `predictably` methods and functions.
 """
+
 from typing import List
 
 from predictably.validate._named_objects import (

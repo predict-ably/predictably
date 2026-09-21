@@ -4,6 +4,7 @@
 
 Tests for all data type functionality are included here.
 """
+
 import re
 from typing import List
 
