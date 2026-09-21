@@ -2,6 +2,7 @@
 # The code is copyrighted by the respective scikit-learn developers (BSD-3-Clause
 # License): https://github.com/scikit-learn/scikit-learn/blob/main/COPYING
 """Test configuration functionality."""
+
 import time
 from concurrent.futures import ThreadPoolExecutor
 from typing import Any

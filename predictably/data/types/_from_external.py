@@ -5,6 +5,7 @@
 Users should use :func:`predictably.from_external_data` or call the `from_array`
 or `from_dataframe` on the applicable `predictably` data type.
 """
+
 from __future__ import annotations
 
 import sys

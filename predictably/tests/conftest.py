@@ -7,7 +7,7 @@ import attrs
 
 from predictably._core._base import BaseEstimator, BaseObject
 
-__all__: List[str] = ["Parent", "Child"]
+__all__: List[str] = ["Child", "Parent"]
 __author__: List[str] = ["RNKuhns"]
 
 PREDICTABLY_BASE_CLASSES = (BaseObject, BaseEstimator)
@@ -26,7 +26,6 @@ class Parent(BaseObject):
 
     def some_method(self):
         """To be implemented by child class."""
-        pass
 
 
 # Fixture class for testing tag system, child overrides tags
@@ -39,11 +38,9 @@ class Child(Parent):
 
     def some_method(self):
         """Child class' implementation."""
-        pass
 
     def some_other_method(self):
         """To be implemented in the child class."""
-        pass
 
 
 @attrs.define(kw_only=True, slots=False, repr=False)
