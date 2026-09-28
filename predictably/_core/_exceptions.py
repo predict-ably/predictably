@@ -16,8 +16,6 @@ class ForwardRefError(TypeError):
     reference annotations within a function and it is not possible to do so.
     """
 
-    pass
-
 
 class NotFittedError(ValueError, AttributeError):
     """Exception class to raise if estimator is used before fitting.
