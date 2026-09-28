@@ -4,6 +4,7 @@
 
 All `predictably` data types should inherit from ``BasePredictablyDataType``.
 """
+
 from __future__ import annotations
 
 import collections

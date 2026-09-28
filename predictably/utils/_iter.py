@@ -4,16 +4,17 @@
 # are copyrighted by the skbase developers, BSD-3-Clause License. For
 # conditions see https://github.com/sktime/skbase/blob/main/LICENSE
 """Utility functionality for working with sequences."""  # numpydoc ignore=ES01
+
 import collections
 import re
 from typing import Any, List, Optional, Sequence, Union
 
 __author__: List[str] = ["RNKuhns"]
 __all__: List[str] = [
-    "_scalar_to_seq",
+    "_format_seq_to_str",
     "_remove_single",
     "_remove_type_text",
-    "_format_seq_to_str",
+    "_scalar_to_seq",
 ]
 
 

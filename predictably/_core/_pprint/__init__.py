@@ -7,6 +7,7 @@
 
 The approach follows scikit-learn conventions.
 """
+
 from typing import List
 
 __author__: List[str] = ["RNKuhns"]

@@ -6,6 +6,7 @@
 
 Follows scikit-learn pretty printing conventions.
 """
+
 # mypy: ignore-errors
 from __future__ import annotations
 
@@ -343,11 +344,7 @@ _STYLE = """
 #$id div.sk-text-repr-fallback {
   display: none;
 }
-""".replace(
-    "  ", ""
-).replace(
-    "\n", ""
-)
+""".replace("  ", "").replace("\n", "")
 
 
 def _object_html_repr(base_object: prc._base.BaseOBject) -> str:
