@@ -4,6 +4,7 @@
 
 Should be used for typing throughout `predictably`.
 """
+
 from __future__ import annotations
 
 import sys
@@ -104,7 +105,7 @@ def _get_forward_ref_module_name(fref: str, return_abbrev: bool = False) -> str:
 
 
 def _evaluate_available_forward_refs(
-    supported: tuple[str | type, ...]
+    supported: tuple[str | type, ...],
 ) -> tuple[tuple[type, ...], tuple[str, ...]]:
     """Load and evaluate available forward references.
 
@@ -152,7 +153,7 @@ def _evaluate_available_forward_refs(
 
 
 def _supported_type_msg(
-    type_: Literal["dataframe", "array", "any"] = "dataframe"
+    type_: Literal["dataframe", "array", "any"] = "dataframe",
 ) -> str:
     """Create message about the types of dataframes that `predictably` supports.
 
@@ -185,7 +186,7 @@ def _supported_type_msg(
 
 
 def raise_not_supported_external_type(
-    type_: Literal["dataframe", "array", "any"] = "dataframe"
+    type_: Literal["dataframe", "array", "any"] = "dataframe",
 ) -> NoReturn:
     """Raise an error if the input data container is not supported by `predictably`.
 
