@@ -9,6 +9,7 @@
 
 Allows users to configure `predictably`.
 """
+
 import threading
 from contextlib import contextmanager
 from typing import Any, Dict, Iterator, List, Literal, Optional, get_args
@@ -17,11 +18,11 @@ from predictably._config_param_setting import GlobalConfigParamSetting
 
 __author__: List[str] = ["RNKuhns"]
 __all__: List[str] = [
-    "get_default_config",
-    "get_config",
-    "set_config",
-    "reset_config",
     "config_context",
+    "get_config",
+    "get_default_config",
+    "reset_config",
+    "set_config",
 ]
 
 
@@ -271,8 +272,6 @@ def set_config(
     if not local_threadsafe:
         global_config.update(local_config)
 
-    return None
-
 
 def reset_config() -> None:
     """Reset the global configuration to the default.
@@ -314,7 +313,6 @@ def reset_config() -> None:
     """
     default_config = get_default_config()
     set_config(**default_config)
-    return None
 
 
 @contextmanager

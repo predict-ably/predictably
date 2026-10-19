@@ -5,6 +5,7 @@
 Tests of core functionality are included here. Tests of specific submodule
 functionality is included in submodule tests.
 """
+
 from typing import List
 
 __all__: List[str] = []
