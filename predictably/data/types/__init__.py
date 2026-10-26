@@ -6,6 +6,7 @@ Users can declare their data type through the ``from_external_data`` functional
 interface or the `from_array` and `from_dataframe` interface on a particular
 data type class.
 """
+
 from typing import List
 
 from predictably.data.types._base import Metadata
