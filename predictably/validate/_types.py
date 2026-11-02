@@ -8,6 +8,7 @@
 For specific functionality to validate the `predictably` data types, see
 :mod:`predictably.validate._data_types`.
 """
+
 import collections
 import inspect
 import math

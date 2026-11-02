@@ -6,6 +6,7 @@ Users should not instantiate the `Timeseries` class directly. Use the `from_arra
 or `from_dataframe` methods or the ``predictably.from_external_data`` functional
 interface.
 """
+
 from __future__ import annotations
 
 import sys

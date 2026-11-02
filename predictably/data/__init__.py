@@ -8,6 +8,7 @@
   as examples throughout the package.
 - :mod:`predictably.data.generate` provides tools for data generation.
 """
+
 from typing import List
 
 __author__: List[str] = ["RNKuhns"]

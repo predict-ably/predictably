@@ -9,6 +9,7 @@ The validations included in this module are used to make sure that any sequences
 named objects conform with predictably's named object API. Among other use cases
 this is used in particular to verify that input to pipelines are specified correctly.
 """
+
 import collections.abc
 from typing import (
     TYPE_CHECKING,
