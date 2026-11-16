@@ -7,6 +7,7 @@
 
 `predictably` classes typically inherit from ``BaseClass``.
 """
+
 import collections
 import inspect
 import re

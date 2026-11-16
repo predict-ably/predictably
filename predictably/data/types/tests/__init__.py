@@ -4,6 +4,7 @@
 
 Tests for all data type functionality are included here.
 """
+
 from typing import List
 
 __all__: List[str] = []
