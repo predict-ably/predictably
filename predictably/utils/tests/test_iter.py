@@ -16,6 +16,7 @@ tests in this module incdlue:
 - test_scalar_to_seq_raises: verify that _scalar_to_seq raises error when an
   invalid value is provided for sequence_type parameter.
 """
+
 from collections.abc import Sequence
 
 import pytest
