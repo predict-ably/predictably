@@ -186,7 +186,7 @@ html_theme_options = {
         },
         {
             "name": "Slack",
-            "url": f"https://join.slack.com/t/{org}/shared_invite/zt-21ezi33ip-WGJCUBCWc5yVrr6FOsARaw",  # noqa: E501
+            "url": f"https://join.slack.com/t/{org}/shared_invite/zt-21ezi33ip-WGJCUBCWc5yVrr6FOsARaw",
             "icon": "fab fa-slack",
         },
         {
